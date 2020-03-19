@@ -1,16 +1,28 @@
-- hosts: local
+- hosts: server-1
   tasks:
+    - name: install openjdk package
+      shell: mkdir /opt/jdkpkg
     - name: copy file to remote host
       unarchive:
-        src: /root/test-ansible/apache-tomcat-8.5.53.tar.gz
-        dest: /opt/tom/
-    - name: make dir at destination
+        src: /root/offline-tomcat-ansible/openjdkpkg.tar.gz
+        dest: /opt/jdkpkg/
+    - name: installing openJDK at Destination
+      shell: yum localinstall -y /opt/jdkpkg/openjdkpkg/java-1.7.0-openjdk-devel-1.7.0.251-2.6.21.0.el7_7.x86_64.rpm
+    - name: make dir at destination for tomcat
       shell: mkdir /opt/tom
+    - name: copy file to remote host
+      unarchive:
+        src: /root/offline-tomcat-ansible/apache-tomcat-8.5.53.tar.gz
+        dest: /opt/tom/
     - name: copy files task
       shell: mv /opt/tom/apache-tomcat-8.5.53 /opt/tom/tomcat9
     - name: copy files task
-      shell: echo "export CATALINA_HOME="/opt/tom/tomcat9"" >> ~/.bashrc 
+      shell: echo "export CATALINA_HOME="/opt/tom/tomcat9"" >> ~/.bashrc
     - name: copy files task
       shell: source ~/.bashrc
+    - name: adding a port to firewall
+      shell: firewall-cmd --zone=public --add-port=8080/tcp --permanent
+    - name: reload firewall
+      shell: firewall-cmd --reload
     - name: copy files task
-      shell: sh /opt/tom/tomcat9/bin/startup.sh 
+      shell: sh /opt/tom/tomcat9/bin/startup.sh
