@@ -10,17 +10,16 @@ Prerequisite:
 --
 Operating System Tested on:
 -
-        -centOS
+        -centOS 7
 Package Require on Base host:
 -
-1.Ansible
-2.sshpass
-###### CentOS  ######
-sudo yum -y install epel-release && sudo yum -y install ansible
-
+	#1.Ansible
+	#2.sshpass
+Install Ansible on CentOS 7
 --
+	#sudo yum -y install epel-release && sudo yum -y install ansible
 
 Run following command to execute the ansible Script: 
 --
-ansible-playbook -b -vvv -u root configy.yaml -i hosts --ask-pass
+	ansible-playbook -b -vvv -u root configy.yaml -i hosts --ask-pass
 
