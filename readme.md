@@ -18,6 +18,22 @@ Package Require on Base host:
 Install Ansible on CentOS 7
 --
 	#sudo yum -y install epel-release && sudo yum -y install ansible
+Install SSHPASS on CentOS 7
+--
+	#sudo yum -y install sshpass
+
+####
+Update Host file with your Host Details
+-
+-
+vi hosts
+-
+	#[host-group]
+	#142.44.243.51
+	#
+	#[local]
+	#127.0.0.1
+
 
 Run following command to execute the ansible Script: 
 --
