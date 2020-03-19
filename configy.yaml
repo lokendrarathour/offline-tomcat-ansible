@@ -1,0 +1,16 @@
+- hosts: local
+  tasks:
+    - name: copy file to remote host
+      unarchive:
+        src: /root/test-ansible/apache-tomcat-8.5.53.tar.gz
+        dest: /opt/tom/
+    - name: make dir
+      shell: mkdir /opt/tom
+    - name: copy files task
+      shell: mv /opt/tom/apache-tomcat-8.5.53 /opt/tom/tomcat9
+    #- name: copy files task
+      #shell: echo "export CATALINA_HOME="/usr/local/tomcat9"" >> ~/.bashrc 
+    #- name: copy files task
+      #shell: source ~/.bashrc
+    #- name: copy files task
+      #shell: sh /usr/local/tomcat9/bi/startup.sh 
